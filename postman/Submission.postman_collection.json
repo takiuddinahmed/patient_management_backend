@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "29bca24c-4e58-4f1e-a7b5-a478c38fb1e0",
+		"name": "Submission",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createSubmission",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/takiuddinahmed/Downloads/action_download_template_template_twenty_seconds_resumecv_overleaf (1).pdf"
+						},
+						{
+							"key": "assessmentId",
+							"value": "6273f520005fe2116c195337",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/submission/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"submission",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createGrade",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mark\": 97,\n    \"remark\": \"The asssignment is very good\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/submission/grade/6273f550005fe2116c19533a",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"submission",
+						"grade",
+						"6273f550005fe2116c19533a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editSubmission",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"62739218344bfd40ab5c89e6\",\n    \"link\":\"google.com/funny\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/submission/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"submission",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/submission/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"submission",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
