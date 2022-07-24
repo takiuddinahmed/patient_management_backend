@@ -10,8 +10,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
       type: String,
     },
-    rfid: {
-      //   unique: true,
+    cardId: {
       type: String,
       default: "",
     },

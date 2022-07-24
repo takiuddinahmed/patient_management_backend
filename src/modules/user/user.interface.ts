@@ -9,6 +9,6 @@ interface User extends Document {
   email: string;
   password: string;
   userRole: UserRole;
-  rfid?: string;
+  cardId?: string;
 }
 export default User;

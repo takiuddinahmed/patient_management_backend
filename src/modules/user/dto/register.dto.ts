@@ -4,6 +4,7 @@ import {
   IsString,
   MinLength,
   validate,
+  ValidateIf,
 } from "class-validator";
 import UserRole from "../enum/role.enum";
 
@@ -27,7 +28,9 @@ class RegisterDto {
   @IsEnum(UserRole)
   public userRole: UserRole;
 
-  public rfid?: string;
+  @IsString()
+  @ValidateIf((object, value) => value !== null)
+  public cardId?: string;
 }
 
 export default RegisterDto;

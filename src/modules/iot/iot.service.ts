@@ -1,14 +1,26 @@
 import HttpException from "../../exceptions/http.exception";
 import Service from "../../interfaces/service";
+import userModel from "../user/user.model";
 import iotModel from "./iot.model";
 
 class IotService implements Service {
   private iotModel = iotModel;
+  private userModel = userModel;
 
   public async getMsg() {
     try {
-      return await this.iotModel.findById("62dcd31cd72a5fc65aa60d71");
+      const cardId = await this.iotModel.findById("62dd77c9b4b0526d572afa97");
+      const user = await this.userModel.findOne({ cardId: cardId?.message });
+      if (user) {
+        return user;
+      } else {
+        return {
+          cardId: cardId?.message,
+          error: true,
+        };
+      }
     } catch (err) {
+      console.log(err);
       throw new HttpException(500, "Server error");
     }
   }
@@ -24,7 +36,7 @@ class IotService implements Service {
   public async updateMsg(msg: string) {
     try {
       return await this.iotModel.findByIdAndUpdate(
-        "62dcd31cd72a5fc65aa60d71",
+        "62dd77c9b4b0526d572afa97",
         {
           message: msg,
         },
@@ -37,7 +49,9 @@ class IotService implements Service {
 
   public async deleteMsg() {
     try {
-      return await this.iotModel.findByIdAndDelete("62dcd31cd72a5fc65aa60d71");
+      return await this.iotModel.findByIdAndUpdate("62dd77c9b4b0526d572afa97", {
+        message: "",
+      });
     } catch (err) {
       throw new HttpException(500, "Server error");
     }
