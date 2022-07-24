@@ -27,7 +27,7 @@ class App {
     this.app.use(morgan("combined"));
     this.app.use(
       cors({
-        origin: "http://localhost:3000",
+        origin: ["http://localhost:3000", "http://68.183.186.8:3000/"],
       })
     );
   }
