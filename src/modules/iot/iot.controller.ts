@@ -15,6 +15,7 @@ class IotController implements Controller {
     this.router.get("/add/:msg", this.addMsg);
     this.router.get("/update/:msg", this.updateMsg);
     this.router.get("/", this.getMsg);
+    this.router.delete("/", this.deleteMsg);
   }
 
   getMsg = async (req: Request, res: Response, next: NextFunction) => {
@@ -40,6 +41,14 @@ class IotController implements Controller {
     try {
       const { msg } = req.params;
       const update = await this.service.updateMsg(msg);
+      res.json(update);
+    } catch (err) {
+      next(err);
+    }
+  };
+  deleteMsg = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const update = await this.service.deleteMsg();
       res.json(update);
     } catch (err) {
       next(err);

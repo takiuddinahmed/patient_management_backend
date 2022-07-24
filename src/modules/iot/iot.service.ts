@@ -7,9 +7,7 @@ class IotService implements Service {
 
   public async getMsg() {
     try {
-      return await this.iotModel.findByIdAndUpdate("62dcd31cd72a5fc65aa60d71", {
-        message: "",
-      });
+      return await this.iotModel.findById("62dcd31cd72a5fc65aa60d71");
     } catch (err) {
       throw new HttpException(500, "Server error");
     }
@@ -32,6 +30,14 @@ class IotService implements Service {
         },
         { new: true }
       );
+    } catch (err) {
+      throw new HttpException(500, "Server error");
+    }
+  }
+
+  public async deleteMsg() {
+    try {
+      return await this.iotModel.findByIdAndDelete("62dcd31cd72a5fc65aa60d71");
     } catch (err) {
       throw new HttpException(500, "Server error");
     }
